@@ -1,13 +1,10 @@
 from fastapi import FastAPI
+from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI()
 
 @app.get("/")
 def index():
-    return {
-        "message": [
-            "Hello Krishnamurai  :)",
-            "We succesfully launch the  FastAPI application!",
-            "Have a Good Day."
-        ]
-    }
+    return {"title": "Hello Krishnamurai  :)"}
+
+Instrumentator().instrument(app).expose(app)
